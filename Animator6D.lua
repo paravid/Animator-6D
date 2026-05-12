@@ -188,23 +188,37 @@ function AnimPlayer:Play(speed, loop)
 
 		local prev = self.seq[1]
 
-		for i = 1, #self.seq do
-			if self.seq[i].Time <= self.time then
-				prev = self.seq[i]
-			else
-				break
-			end
-		end
+		local prev = self.seq[1]
+local nextFrame = self.seq[#self.seq]
 
-		for joint, data in pairs(prev.Data) do
-			local motor = FindMotor(joint, self.map, self.lower)
+for i = 1, #self.seq do
+	if self.seq[i].Time <= self.time then
+		prev = self.seq[i]
+	end
 
-			if motor then
-				pcall(function()
-					motor.C0 = self.savedC0[motor] * data.CFrame
-				end)
-			end
-		end
+	if self.seq[i].Time >= self.time then
+		nextFrame = self.seq[i]
+		break
+	end
+end
+
+local currentFrame
+
+if self.speed >= 0 then
+	currentFrame = prev
+else
+	currentFrame = nextFrame
+end
+
+for joint, data in pairs(currentFrame.Data) do
+	local motor = FindMotor(joint, self.map, self.lower)
+
+	if motor then
+		pcall(function()
+			motor.C0 = self.savedC0[motor] * data.CFrame
+		end)
+	end
+end
 	end)
 end
 
