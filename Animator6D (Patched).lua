@@ -6,7 +6,12 @@
 --||  Note: I NOT Creator of this script. i just edited and added some functions and support to r15. ||--
 --\\=================================================================================================//--
 
-if getgenv().Animator6DLoadedPro then return end
+if getgenv().Animator6DStop then
+	pcall(function()
+		getgenv().Animator6DStop()
+	end)
+end
+
 getgenv().Animator6DLoadedPro = true
 
 local Players = game:GetService("Players")
