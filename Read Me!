@@ -1,0 +1,7 @@
+Unfortunately, Roblox released an update that broke the Motor6D in R15 rigs.
+All R15 rigs that create a ragdoll effect on your character, causing Motor6D to death in R15.
+(because the Motor6D was replaced by ball constraints and animation constraints).
+And almost no R15 game has removed this useless option.
+However, I'll look for a way to keep this working, but don't expect too much, because Animator6D wasn't made by me, but by gObl00x. 
+This is just an edit that adds support for R15 and removes bugs and unnecessary things from the script. 
+But for now, the script works normally in R6.
